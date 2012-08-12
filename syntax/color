@@ -1,0 +1,79 @@
+asciidocAdmonitionNote term=reverse ctermfg=white ctermbg=green guifg=white guibg=green
+asciidocAdmonitionWarn term=reverse ctermfg=white ctermbg=red guifg=white guibg=red
+asciidocBackslash ctermfg=darkmagenta guifg=darkmagenta
+asciidocBiblio term=bold ctermfg=darkcyan cterm=bold guifg=darkcyan gui=bold
+asciidocDoubleDollarPassthrough term=underline ctermfg=darkmagenta guifg=darkmagenta
+asciidocFootnote term=underline ctermfg=darkmagenta guifg=darkmagenta
+asciidocGlossary term=underline ctermfg=darkgreen cterm=underline guifg=darkgreen gui=underline
+asciidocHLabel term=underline ctermfg=darkgreen cterm=underline guifg=darkgreen gui=underline
+asciidocInclude term=underline ctermfg=darkmagenta guifg=darkmagenta
+asciidocQuestion term=underline ctermfg=darkgreen cterm=underline guifg=darkgreen gui=underline
+asciidocQuotedBold term=bold cterm=bold gui=bold
+asciidocQuotedDoubleQuoted term=bold ctermfg=darkyellow guifg=darkyellow
+asciidocQuotedEmphasized term=bold ctermfg=darkgreen guifg=darkgreen gui=italic
+asciidocQuotedMonospaced term=standout ctermfg=darkyellow guifg=darkyellow
+asciidocQuotedUnconstrainedBold term=bold cterm=bold gui=bold
+asciidocQuotedUnconstrainedEmphasized term=bold ctermfg=darkgreen guifg=darkgreen gui=italic
+asciidocQuotedUnconstrainedMonospaced term=standout ctermfg=darkyellow guifg=darkyellow
+asciidocQuotedSingleQuoted term=bold ctermfg=darkyellow guifg=darkyellow
+asciidocQuotedSubscript term=bold ctermfg=darkyellow guifg=darkyellow
+asciidocQuotedSuperscript term=bold ctermfg=darkyellow guifg=darkyellow
+asciidocReference term=underline ctermfg=darkmagenta guifg=darkmagenta
+asciidocReplacements term=standout ctermfg=darkcyan guifg=darkcyan
+asciidocRevisionInfo term=standout ctermfg=blue guifg=darkblue gui=bold
+asciidocSource term=standout ctermfg=darkyellow guifg=darkyellow
+asciidocToDo term=reverse ctermfg=black ctermbg=yellow guifg=black guibg=yellow
+asciidocTripplePlusPassthrough term=underline ctermfg=darkmagenta guifg=darkmagenta
+asciidocAttributeEntry term=standout ctermfg=darkgreen guifg=darkgreen
+asciidocAttributeList term=standout ctermfg=darkgreen guifg=darkgreen
+link asciidocAttributeMacro Macro
+asciidocAttributeRef term=standout,underline ctermfg=darkgreen cterm=bold,underline guifg=darkgreen gui=bold,underline
+asciidocListBlockDelimiter term=bold ctermfg=darkcyan cterm=bold guifg=darkcyan gui=bold
+asciidocListBullet term=bold ctermfg=darkcyan cterm=bold guifg=darkcyan gui=bold
+asciidocListContinuation term=bold ctermfg=darkcyan cterm=bold guifg=darkcyan gui=bold
+asciidocListLabel term=underline ctermfg=darkgreen cterm=underline guifg=darkgreen gui=underline
+asciidocListNumber term=bold ctermfg=darkcyan cterm=bold guifg=darkcyan gui=bold
+asciidocSect0 term=bold,underline ctermfg=darkmagenta cterm=bold,underline guifg=darkmagenta gui=bold,underline
+asciidocSect1 term=underline ctermfg=darkmagenta cterm=underline guifg=darkmagenta gui=underline
+asciidocSect2 term=underline ctermfg=darkmagenta cterm=underline guifg=darkmagenta gui=underline
+asciidocSect3 term=underline ctermfg=darkmagenta cterm=underline guifg=darkmagenta gui=underline
+asciidocSect4 term=underline ctermfg=darkmagenta cterm=underline guifg=darkmagenta gui=underline
+asciidocSect0Old term=underline ctermfg=darkmagenta cterm=bold guifg=darkmagenta gui=bold
+asciidocSect1Old term=underline ctermfg=darkmagenta guifg=darkmagenta
+asciidocSect2Old term=underline ctermfg=darkmagenta guifg=darkmagenta
+asciidocSect3Old term=underline ctermfg=darkmagenta guifg=darkmagenta
+asciidocSect4Old term=underline ctermfg=darkmagenta guifg=darkmagenta
+asciidocEmail term=underline ctermfg=darkred cterm=underline guifg=darkred gui=underline
+asciidocLink term=underline ctermfg=darkred cterm=underline guifg=darkred gui=underline
+asciidocOneLineTitle ctermfg=darkyellow guifg=darkyellow gui=underline
+asciidocTwoLineTitle ctermfg=darkyellow guifg=darkyellow gui=underline
+asciidocURL term=underline ctermfg=darkred cterm=underline guifg=darkred gui=underline
+asciidocBlockTitle term=underline ctermfg=darkgreen cterm=underline guifg=darkgreen gui=underline
+asciidocExampleBlockDelimiter term=standout ctermfg=darkyellow guifg=darkyellow
+asciidocFilterBlock term=standout ctermfg=darkyellow guifg=darkyellow
+asciidocListingBlock term=standout ctermfg=darkyellow guifg=darkyellow
+asciidocLiteralBlock term=standout ctermfg=darkyellow guifg=darkyellow
+asciidocLiteralParagraph term=standout ctermfg=darkyellow guifg=darkyellow
+asciidocQuoteBlockDelimiter term=standout ctermfg=darkyellow guifg=darkyellow
+asciidocSidebarDelimiter term=standout ctermfg=darkyellow guifg=darkyellow
+link asciidocTableBlock2 NONE
+link asciidocTableBlock NONE
+asciidocTableDelimiter2 term=standout ctermfg=darkcyan guifg=darkcyan
+asciidocTableDelimiter term=standout ctermfg=darkcyan guifg=darkcyan
+asciidocTable_OLD term=standout ctermfg=darkyellow guifg=darkyellow
+asciidocTablePrefix2 term=standout ctermfg=darkcyan guifg=darkcyan
+asciidocTablePrefix term=standout ctermfg=darkcyan guifg=darkcyan
+asciidocCommentBlock term=standout ctermfg=darkblue guifg=darkblue
+asciidocCommentLine term=standout ctermfg=darkblue guifg=darkblue
+asciidocAnchorMacro term=standout ctermfg=darkred guifg=darkred
+link asciidocIndexTerm Macro
+asciidocMacro term=underline ctermfg=darkred cterm=underline guifg=darkred gui=underline
+asciidocMacroAttributes term=bold ctermfg=darkyellow guifg=darkyellow
+asciidocRefMacro term=standout ctermfg=darkred guifg=darkred
+link asciidocCallout Label
+link asciidocEntityRef Special
+link asciidocIdMarker Special
+link asciidocLineBreak Special
+link asciidocPagebreak Type
+link asciidocPassthroughBlock Identifier
+link asciidocRuler Type

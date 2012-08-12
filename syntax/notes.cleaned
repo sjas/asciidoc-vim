@@ -1,0 +1,39 @@
+/*
+taffy is red
+lightgravel or gravel for comments
+dress could be rosa, too
+or dress could be lightbrown?
+lime
+darkroast
+coffee
+
+dalespale is beige
+tardis is light blue
+
+dirtyblonde */
+
+plain                    = #f8f6f2 , 15
+snow                     = #ffffff , 15
+coal                     = #000000 , 16
+brightgravel             = #d9cec3 , 252
+lightgravel              = #998f84 , 245
+gravel                   = #857f78 , 243
+mediumgravel             = #666462 , 241
+deepgravel               = #45413b , 238
+deepergravel             = #35322d , 236
+darkgravel               = #242321 , 235
+blackgravel              = #1c1b1a , 233
+blackestgravel           = #141413 , 232
+dalespale                = #fade3e , 221
+dirtyblonde              = #f4cf86 , 222
+taffy                    = #ff2c4b , 196
+saltwatertaffy           = #8cffba , 121
+tardis                   = #0a9dff , 39
+orange                   = #ffa724 , 214
+lime                     = #aeee00 , 154
+dress                    = #ff9eb8 , 211
+toffee                   = #b88853 , 137
+coffee                   = #c7915b , 173
+darkroast                = #88633f , 95
+
+/* vim: se ft=css:*/
