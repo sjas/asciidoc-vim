@@ -57,7 +57,7 @@ definitions. To test each of these on a capable terminal, try:
 
 
 == Known shortcomings
-There are a few quirks in the syntax files. Here is an overview:
+oThere are a few quirks in the syntax files. Here is an overview:
 
 Underlining titles does not work consistently??
 

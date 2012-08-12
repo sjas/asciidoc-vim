@@ -50,6 +50,8 @@ ipsum dolor sit amet, consectetuer adipiscing elit. Fusce euismod commodo
 == Blocks
 Many ways to make $$blocks$$
 
+// regular comment with a TODO
+
 ////
 And even comment blocks do well
 ////
@@ -58,6 +60,11 @@ And even comment blocks do well
 WARNING: Admonitions have a special meaning too.
 
 [NOTE]
+
+
+////
+this is just FIXME test here ... haahhahahha
+////
 Also when used in block mode.
 
 == Definitions

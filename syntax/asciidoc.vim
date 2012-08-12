@@ -1,13 +1,17 @@
 " Vim syntax file
 " Language: Asciidoc text document
-" Maintainer: Dag Wieers <dag@wieers.com> (merged wih Stuart Rackham's
+" Maintainer: sjas
+"             BASE LAYOUT BY:
+"             Dag Wieers <dag@wieers.com> (merged wih Stuart Rackham's
 "             upstream asciidoc.vim script).
+"             COLORS STOLEN FROM:
+"             Steve Losh, who made the unbelievably great badwolf color scheme
 " URL: http://www.methods.co.nz/asciidoc/
 " License: GPL (http://www.gnu.org)
 " Remarks: Vim 6 or greater
 " Limitations: See 'Appendix E: Vim Syntax Highlighter' in the AsciiDoc 'User
 "               Guide'.
-" Last Change: $Date: 2007/07/18 16:11:12 $
+" Last Change: $Date: 2012/08/12 20:01:52 $
 " $Revision$
 
 if exists("b:current_syntax")
@@ -15,7 +19,7 @@ if exists("b:current_syntax")
 endif
 
 syn clear
-syn sync fromstart
+"syn sync fromstart
 syn sync linebreaks=1
 
 " Run :help syn-priority to review syntax matching priority.
@@ -126,8 +130,6 @@ syn region asciidocSect4 start=/^=====\s\+\S/ end=/$/ oneline contains=asciidocQ
 
 "FIXME: It is impossible to distinguish underlined titles from block delimiters
 "       because we cannot calculate length in VIM syntax
-syn match asciidocSect0Old /^[^. +/[].*[^.:]\n==\+$/ contains=asciidocQuoted.*,asciidocAttributeRef
-syn match asciidocSect1Old /^[^. +/[].*[^.:]\n--\+$/ contains=asciidocQuoted.*,asciidocAttributeRef
 syn match asciidocSect2Old /^[^. +/[].*[^.:]\n\~\~\+$/ contains=asciidocQuoted.*,asciidocAttributeRef
 syn match asciidocSect3Old /^[^. +/[].*[^.:]\n^^\+$/ contains=asciidocQuoted.*,asciidocAttributeRef
 syn match asciidocSect4Old /^[^. +/[].*[^.:]\n++\+$/ contains=asciidocQuoted.*,asciidocAttributeRef
@@ -157,114 +159,212 @@ syn region asciidocGlossary start="\S" end=":-\s*$" oneline
 "syn match asciidocInclude "sys::\[\]"
 "syn match asciidocInclude "sys2::\[\]"
 
+
+" Palette {{{
+
+let s:bwc = {}
+
+" The most basic of all our colors is a slightly tweaked version of the Molokai
+" Normal text.
+let s:bwc.plain = ['f8f6f2', 15]
+
+" Pure and simple.
+let s:bwc.snow = ['ffffff', 15]
+let s:bwc.coal = ['000000', 16]
+
+" All of the Gravel colors are based on a brown from Clouds Midnight.
+let s:bwc.brightgravel   = ['d9cec3', 252]
+let s:bwc.lightgravel    = ['998f84', 245]
+let s:bwc.gravel         = ['857f78', 243]
+let s:bwc.mediumgravel   = ['666462', 241]
+let s:bwc.deepgravel     = ['45413b', 238]
+let s:bwc.deepergravel   = ['35322d', 236]
+let s:bwc.darkgravel     = ['242321', 235]
+let s:bwc.blackgravel    = ['1c1b1a', 233]
+let s:bwc.blackestgravel = ['141413', 232]
+
+" A color sampled from a highlight in a photo of a glass of Dale's Pale Ale on
+" my desk.
+let s:bwc.dalespale = ['fade3e', 221]
+
+" A beautiful tan from Tomorrow Night.
+let s:bwc.dirtyblonde = ['f4cf86', 222]
+
+" Delicious, chewy red from Made of Code for the poppiest highlights.
+let s:bwc.taffy = ['ff2c4b', 196]
+
+" Another chewy accent, but use sparingly!
+let s:bwc.saltwatertaffy = ['8cffba', 121]
+
+" The star of the show comes straight from Made of Code.
+let s:bwc.tardis = ['0a9dff', 39]
+
+" This one's from Mustang, not Florida!
+let s:bwc.orange = ['ffa724', 214]
+
+" A limier green from Getafe.
+let s:bwc.lime = ['aeee00', 154]
+
+" Rose's dress in The Idiot's Lantern.
+let s:bwc.dress = ['ff9eb8', 211]
+
+" Another play on the brown from Clouds Midnight.  I love that color.
+let s:bwc.toffee = ['b88853', 137]
+
+" Also based on that Clouds Midnight brown.
+let s:bwc.coffee    = ['c7915b', 173]
+let s:bwc.darkroast = ['88633f', 95]
+
+" }}}
+" Highlighting Function {{{
+function! s:HL(group, fg, ...)
+    " Arguments: group, guifg, guibg, gui, guisp
+
+    let histring = 'hi ' . a:group . ' '
+
+    if strlen(a:fg)
+        if a:fg == 'fg'
+            let histring .= 'guifg=fg ctermfg=fg '
+        else
+            let c = get(s:bwc, a:fg)
+            let histring .= 'guifg=#' . c[0] . ' ctermfg=' . c[1] . ' '
+        endif
+    endif
+
+    if a:0 >= 1 && strlen(a:1)
+        if a:1 == 'bg'
+            let histring .= 'guibg=bg ctermbg=bg '
+        else
+            let c = get(s:bwc, a:1)
+            let histring .= 'guibg=#' . c[0] . ' ctermbg=' . c[1] . ' '
+        endif
+    endif
+
+    if a:0 >= 2 && strlen(a:2)
+        let histring .= 'gui=' . a:2 . ' cterm=' . a:2 . ' '
+    endif
+
+    if a:0 >= 3 && strlen(a:3)
+        let c = get(s:bwc, a:3)
+        let histring .= 'guisp=#' . c[0] . ' '
+    endif
+
+    " echom histring
+
+execute histring
+endfunction
+" }}}
 "Styles
-highlight asciidocAdmonitionNote term=reverse ctermfg=white ctermbg=green guifg=white guibg=green
-highlight asciidocAdmonitionWarn term=reverse ctermfg=white ctermbg=red guifg=white guibg=red
-highlight asciidocBackslash ctermfg=darkmagenta guifg=darkmagenta
-highlight asciidocBiblio term=bold ctermfg=darkcyan cterm=bold guifg=darkcyan gui=bold
-highlight asciidocDoubleDollarPassthrough term=underline ctermfg=darkmagenta guifg=darkmagenta
-highlight asciidocFootnote term=underline ctermfg=darkmagenta guifg=darkmagenta
-highlight asciidocGlossary term=underline ctermfg=darkgreen cterm=underline guifg=darkgreen gui=underline
-highlight asciidocHLabel term=underline ctermfg=darkgreen cterm=underline guifg=darkgreen gui=underline
-highlight asciidocInclude term=underline ctermfg=darkmagenta guifg=darkmagenta
-highlight asciidocQuestion term=underline ctermfg=darkgreen cterm=underline guifg=darkgreen gui=underline
-highlight asciidocQuotedBold term=bold cterm=bold gui=bold
-highlight asciidocQuotedDoubleQuoted term=bold ctermfg=darkyellow guifg=darkyellow
-highlight asciidocQuotedEmphasized term=bold ctermfg=darkgreen guifg=darkgreen gui=italic
-highlight asciidocQuotedMonospaced term=standout ctermfg=darkyellow guifg=darkyellow
-highlight asciidocQuotedUnconstrainedBold term=bold cterm=bold gui=bold
-highlight asciidocQuotedUnconstrainedEmphasized term=bold ctermfg=darkgreen guifg=darkgreen gui=italic
-highlight asciidocQuotedUnconstrainedMonospaced term=standout ctermfg=darkyellow guifg=darkyellow
-highlight asciidocQuotedSingleQuoted term=bold ctermfg=darkyellow guifg=darkyellow
-highlight asciidocQuotedSubscript term=bold ctermfg=darkyellow guifg=darkyellow
-highlight asciidocQuotedSuperscript term=bold ctermfg=darkyellow guifg=darkyellow
-highlight asciidocReference term=underline ctermfg=darkmagenta guifg=darkmagenta
-highlight asciidocReplacements term=standout ctermfg=darkcyan guifg=darkcyan
-highlight asciidocRevisionInfo term=standout ctermfg=blue guifg=darkblue gui=bold
-highlight asciidocSource term=standout ctermfg=darkyellow guifg=darkyellow
-highlight asciidocToDo term=reverse ctermfg=black ctermbg=yellow guifg=black guibg=yellow
-highlight asciidocTripplePlusPassthrough term=underline ctermfg=darkmagenta guifg=darkmagenta
+call s:HL('asciidocAdmonitionNote'                , 'saltwatertaffy' , 'deepergravel' , 'bold')
+call s:HL('asciidocAdmonitionWarn'                , 'lime'           , 'taffy'        , 'bold')
+call s:HL('asciidocBackslash'                     , 'darkroast')
+call s:HL('asciidocBiblio'                        , 'tardis'         , ''             , 'bold')
+call s:HL('asciidocFootnote'                      , 'lime'           , ''             , 'underline')
+call s:HL('asciidocGlossary'                      , 'saltwatertaffy' , ''             , 'underline')
+call s:HL('asciidocHLabel'                        , 'saltwatertaffy' , ''             , 'bold')
+call s:HL('asciidocInclude'                       , 'darkroast'      , ''             , 'underline')
+call s:HL('asciidocQuestion'                      , 'saltwatertaffy' , ''             , 'underline')
+
+call s:HL('asciidocQuotedBold'                    , 'lime'           , ''             , 'bold')
+call s:HL('asciidocQuotedUnconstrainedBold'       , 'lime'           , ''             , 'bold')
+call s:HL('asciidocQuotedSingleQuoted'            , 'dalespale'      , ''             , '')
+call s:HL('asciidocQuotedDoubleQuoted'            , 'dalespale'      , ''             , '')
+call s:HL('asciidocQuotedEmphasized'              , 'saltwatertaffy' , ''             , '')
+call s:HL('asciidocQuotedUnconstrainedEmphasized' , 'saltwatertaffy' , ''             , '')
+call s:HL('asciidocQuotedMonospaced'              , 'toffee'         , ''             , 'bold')
+call s:HL('asciidocQuotedUnconstrainedMonospaced' , 'toffee'         , ''             , 'bold')
+call s:HL('asciidocQuotedSubscript'               , 'dalespale'      , ''             , 'bold')
+call s:HL('asciidocQuotedSuperscript'             , 'dalespale'      , ''             , 'bold')
+
+call s:HL('asciidocReference'                     , 'darkroast'      , ''             , '')
+call s:HL('asciidocReplacements'                  , 'tardis'         , ''             , 'bold')
+call s:HL('asciidocRevisionInfo'                  , 'tardis'         , ''             , 'bold')
+call s:HL('asciidocSource'                        , 'dirtyblonde'    , ''             , 'bold')
+call s:HL('asciidocToDo'                          , 'taffy'          , 'lime'         , 'bold')
 
 "Attributes
-highlight asciidocAttributeEntry term=standout ctermfg=darkgreen guifg=darkgreen
-highlight asciidocAttributeList term=standout ctermfg=darkgreen guifg=darkgreen
-highlight link asciidocAttributeMacro Macro
-"highlight asciidocAttributeRef term=standout ctermfg=darkgreen cterm=bold guifg=darkgreen gui=bold
-highlight asciidocAttributeRef term=standout,underline ctermfg=darkgreen cterm=bold,underline guifg=darkgreen gui=bold,underline
+call s:HL('asciidocAttributeEntry'                , 'orange'         , ''             , 'bold')
+call s:HL('asciidocAttributeList'                 , 'orange'         , ''             , 'bold')
+call s:HL('asciidocAttributeRef'                  , 'orange'         , ''             , 'bold')
+"link asciidocAttributeMacro Macro
 
 "Lists
-highlight asciidocListBlockDelimiter term=bold ctermfg=darkcyan cterm=bold guifg=darkcyan gui=bold
-highlight asciidocListBullet term=bold ctermfg=darkcyan cterm=bold guifg=darkcyan gui=bold
-highlight asciidocListContinuation term=bold ctermfg=darkcyan cterm=bold guifg=darkcyan gui=bold
-highlight asciidocListLabel term=underline ctermfg=darkgreen cterm=underline guifg=darkgreen gui=underline
-highlight asciidocListNumber term=bold ctermfg=darkcyan cterm=bold guifg=darkcyan gui=bold
+call s:HL('asciidocListBlockDelimiter'            , 'coffee'         , ''             , 'bold')
+call s:HL('asciidocListBullet'                    , 'coffee'         , ''             , 'bold')
+call s:HL('asciidocListContinuation'              , 'coffee'         , ''             , 'bold')
+call s:HL('asciidocListNumber'                    , 'coffee'         , ''             , 'bold')
+call s:HL('asciidocListLabel'                     , 'coffee'         , ''             , 'bold')
 
 "Sections
-highlight asciidocSect0 term=bold,underline ctermfg=darkmagenta cterm=bold,underline guifg=darkmagenta gui=bold,underline
-highlight asciidocSect1 term=underline ctermfg=darkmagenta cterm=underline guifg=darkmagenta gui=underline
-highlight asciidocSect2 term=underline ctermfg=darkmagenta cterm=underline guifg=darkmagenta gui=underline
-highlight asciidocSect3 term=underline ctermfg=darkmagenta cterm=underline guifg=darkmagenta gui=underline
-highlight asciidocSect4 term=underline ctermfg=darkmagenta cterm=underline guifg=darkmagenta gui=underline
-highlight asciidocSect0Old term=underline ctermfg=darkmagenta cterm=bold guifg=darkmagenta gui=bold
-highlight asciidocSect1Old term=underline ctermfg=darkmagenta guifg=darkmagenta
-highlight asciidocSect2Old term=underline ctermfg=darkmagenta guifg=darkmagenta
-highlight asciidocSect3Old term=underline ctermfg=darkmagenta guifg=darkmagenta
-highlight asciidocSect4Old term=underline ctermfg=darkmagenta guifg=darkmagenta
+call s:HL('asciidocOneLineTitle'                  , 'snow'           , 'taffy'        , 'bold')
+call s:HL('asciidocTwoLineTitle'                  , 'snow'           , 'taffy'        , 'bold')
+call s:HL('asciidocSect0'                         , 'snow'           , 'taffy'        , 'bold')
+call s:HL('asciidocSect1'                         , 'snow'           , 'taffy'        , 'bold')
+call s:HL('asciidocSect2'                         , 'snow'           , 'taffy'        , 'bold')
+call s:HL('asciidocSect3'                         , 'snow'           , 'taffy'        , 'bold')
+call s:HL('asciidocSect4'                         , 'snow'           , 'taffy'        , 'bold')
+call s:HL('asciidocSect0Old'                      , 'snow'           , 'taffy'        , 'bold')
+call s:HL('asciidocSect1Old'                      , 'snow'           , 'taffy'        , 'bold')
+call s:HL('asciidocSect2Old'                      , 'snow'           , 'taffy'        , 'bold')
+call s:HL('asciidocSect3Old'                      , 'snow'           , 'taffy'        , 'bold')
+call s:HL('asciidocSect4Old'                      , 'snow'           , 'taffy'        , 'bold')
 
 "Links
-highlight asciidocEmail term=underline ctermfg=darkred cterm=underline guifg=darkred gui=underline
-highlight asciidocLink term=underline ctermfg=darkred cterm=underline guifg=darkred gui=underline
-highlight asciidocOneLineTitle ctermfg=darkyellow guifg=darkyellow gui=underline
-highlight asciidocTwoLineTitle ctermfg=darkyellow guifg=darkyellow gui=underline
-highlight asciidocURL term=underline ctermfg=darkred cterm=underline guifg=darkred gui=underline
+call s:HL('asciidocEmail'                         , 'taffy'          , ''             , 'underline')
+call s:HL('asciidocLink'                          , 'taffy'          , ''             , 'underline')
+call s:HL('asciidocURL'                           , 'taffy'          , ''             , 'underline')
 
 "Blocks
-highlight asciidocBlockTitle term=underline ctermfg=darkgreen cterm=underline guifg=darkgreen gui=underline
-highlight asciidocExampleBlockDelimiter term=standout ctermfg=darkyellow guifg=darkyellow
-highlight asciidocFilterBlock term=standout ctermfg=darkyellow guifg=darkyellow
-highlight asciidocListingBlock term=standout ctermfg=darkyellow guifg=darkyellow
-highlight asciidocLiteralBlock term=standout ctermfg=darkyellow guifg=darkyellow
-highlight asciidocLiteralParagraph term=standout ctermfg=darkyellow guifg=darkyellow
-highlight asciidocQuoteBlockDelimiter term=standout ctermfg=darkyellow guifg=darkyellow
-highlight asciidocSidebarDelimiter term=standout ctermfg=darkyellow guifg=darkyellow
+call s:HL('asciidocBlockTitle'                    , 'lime'           , ''             , '')
+call s:HL('asciidocLiteralParagraph'              , 'toffee'         , ''             , 'bold')
+call s:HL('asciidocLiteralBlock'                  , 'toffee'         , ''             , 'bold')
+call s:HL('asciidocFilterBlock'                   , 'toffee'         , ''             , 'bold')
+call s:HL('asciidocListingBlock'                  , 'toffee'         , ''             , 'bold')
+call s:HL('asciidocExampleBlockDelimiter'         , 'toffee'         , ''             , 'bold')
+call s:HL('asciidocQuoteBlockDelimiter'           , 'toffee'         , ''             , 'bold')
+call s:HL('asciidocSidebarDelimiter'              , 'toffee'         , ''             , 'bold')
+call s:HL('asciidocDoubleDollarPassthrough'       , 'coal'           , 'coffee'       , 'bold')
+call s:HL('asciidocTripplePlusPassthrough'        , 'coal'           , 'coffee'       , 'bold')
 
 "Tables
-highlight link asciidocTableBlock2 NONE
-highlight link asciidocTableBlock NONE
-highlight asciidocTableDelimiter2 term=standout ctermfg=darkcyan guifg=darkcyan
-highlight asciidocTableDelimiter term=standout ctermfg=darkcyan guifg=darkcyan
-highlight asciidocTable_OLD term=standout ctermfg=darkyellow guifg=darkyellow
-highlight asciidocTablePrefix2 term=standout ctermfg=darkcyan guifg=darkcyan
-highlight asciidocTablePrefix term=standout ctermfg=darkcyan guifg=darkcyan
+"link asciidocTableBlock2 NONE
+"link asciidocTableBlock NONE
+call s:HL('asciidocTableDelimiter2'               , 'darkroast'      , ''             , 'bold')
+call s:HL('asciidocTableDelimiter'                , 'darkroast'      , ''             , 'bold')
+call s:HL('asciidocTable_OLD'                     , 'darkroast'      , ''             , 'bold')
+call s:HL('asciidocTablePrefix2'                  , 'darkroast'      , ''             , 'bold')
+call s:HL('asciidocTablePrefix'                   , 'darkroast'      , ''             , 'bold')
 
 "Comments
-highlight asciidocCommentBlock term=standout ctermfg=darkblue guifg=darkblue
-highlight asciidocCommentLine term=standout ctermfg=darkblue guifg=darkblue
+call s:HL('asciidocCommentLine'                   , 'gravel'         , 'darkgravel'  , '')
+call s:HL('asciidocCommentBlock'                  , 'deepgravel'     , 'darkgravel'  , 'bold')
 
 "Macros
-highlight asciidocAnchorMacro term=standout ctermfg=darkred guifg=darkred
-highlight link asciidocIndexTerm Macro
-highlight asciidocMacro term=underline ctermfg=darkred cterm=underline guifg=darkred gui=underline
-highlight asciidocMacroAttributes term=bold ctermfg=darkyellow guifg=darkyellow
-highlight asciidocRefMacro term=standout ctermfg=darkred guifg=darkred
+call s:HL('asciidocAnchorMacro'                   , 'taffy'          , ''             , 'bold')
+"link asciidocIndexTerm Macro
+call s:HL('asciidocMacro'                         , 'taffy'          , ''             , 'underline')
+call s:HL('asciidocMacroAttributes'               , 'dirtyblonde'    , ''             , 'bold')
+call s:HL('asciidocRefMacro'                      , 'taffy'          , ''             , 'bold')
 
 "Other
-highlight link asciidocCallout Label
-highlight link asciidocEntityRef Special
-highlight link asciidocIdMarker Special
-highlight link asciidocLineBreak Special
-highlight link asciidocPagebreak Type
-highlight link asciidocPassthroughBlock Identifier
-highlight link asciidocRuler Type
+"link asciidocCallout Label
+"link asciidocEntityRef Special
+"link asciidocIdMarker Special
+"link asciidocLineBreak Special
+"link asciidocPagebreak Type
+"link asciidocPassthroughBlock Identifier
+"link asciidocRuler Type
 
 let b:current_syntax = "asciidoc"
 
 "Show tab and trailing characters
-set listchars=tab:»·,trail:·
-set list
+"all turned off, this is better handled globally
+"set listchars=tab:»·,trail:·
+"sjas changed to nolist
+"set nolist
 
 "
-"set textwidth=78 formatoptions=tcqn autoindent
+set textwidth=78 formatoptions=tcqn autoindent
 set formatoptions=tcqn
 
 if version >= 700
