@@ -1,20 +1,28 @@
-= Asciidoc syntax test document
+= Asciidoc syntax test document (Document Title (level 0)
+
+== Section title (level 1)
+=== Section title (level 2)
+==== Section title (level 3)
+===== Section title (level 4)
 
 == Emphasizing and quoting
+
 Emphasized, bold etc. text preceded or followed by dashes is handled
 correctly:
 
-- *bold*, --*bold*, *bold*--bla*nonbold*.
-- _emph_, --_emph_, _emph_--bla_nonemph_.
-- 'emph', --'emph', 'emph'--bla_nonemph_.
-- +mono+, --+mono+, +mono+--bla+nonmono+.
-- `mono`, --`mono`, `mono`--bla`nonmono`.
-- ``quot'', --``quot'', ``quot''--bla``nonquot''.
+- *bold*, --*bold*, *bold*--bla*nobold*
+- _emph_, --_emph_, _emph_--bla_noemph_
+- 'emph', --'emph', 'emph'--bla_noemph_
+- +mono+, --+mono+, +mono+--bla+nomono+
+- `mono`, --`mono`, `mono`--bla`nomono`
+- ``quot'', --``quot'', ``quot''--bla``noquot''
 
-*Emphasizing a complete multi-line paragraph should be possible too ! And
+*Emphasizing a complete multi-line paragraph should be possible too ! And...
 So it will be...*
 
+
 == Lists
+
 Correct indentation: simple numbers at the start of lines should not be
 confused with list items. These are numbered lists, so lines following a
 list item should be indented:
@@ -46,25 +54,37 @@ primis. Sit munere ponderum dignissim et. Minim luptatum et vel. (Vivamus
 xi) mi eu lacus. Donec eget arcu bibendum nunc consequat lobortis. Lorem
 ipsum dolor sit amet, consectetuer adipiscing elit. Fusce euismod commodo
 
-// Comments are taken care off as well //
+// Comments are taken care off as well
+
 == Blocks
-Many ways to make $$blocks$$
+
+Many ways to make $$blocks$$.
+// FIXME +++...+++ blocks don't seem to work.
+
+////
+And even comment blocks do well XXX
+////
 
 // regular comment with a TODO
 
-////
-And even comment blocks do well
-////
+.Oh yes..
+ - there
+ - really
+ - are
+
+.An Example Sidebar
+************************************************
+Any AsciiDoc SectionBody element (apart from
+SidebarBlocks) can be placed inside a sidebar.
+************************************************
+
+Have a look at the compiled .pdf to get the idea.
 
 == Admonitions
+
 WARNING: Admonitions have a special meaning too.
 
 [NOTE]
-
-
-////
-this is just FIXME test here ... haahhahahha
-////
 Also when used in block mode.
 
 == Definitions
@@ -75,12 +95,27 @@ Definition 2::
     This is it too
 
 == Inserting quotes
+
 Typing "" inserts a pair of quotes (``'') and places the cursor between
 them. Works in both insert and command mode (switching to insert mode).
 Typing a single " works as usual (though with a slight delay).
 
+== There are tables, too.
+
+[cols=",^",options="header",width="50%"]
+|======================
+2+^|Gewichtung der Kriterien
+|customer satisfaction    |0.4
+|product diversity        |0.6
+|time to market           |0.3
+|error rate               |0.7
+|market penetration       |FIXME
+|automatization           |FIXME
+|======================
+
+Tables have a *much* more possibilites, than shown here.
+
 == URLs and email addresses
+
 So when using a URL like http://dag.wieers.com/[Test] it needs to stand out,
 same is true for email addresses like dag@wieers.com
-
-// vim: set syntax=asciidoc:
