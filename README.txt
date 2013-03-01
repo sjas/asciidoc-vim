@@ -36,7 +36,7 @@ Use Vundle, the best plugin manager for vim. Seriously.
 
 2. Use '.asc'  as file extension, instead of '.txt'.
 
-3. Use '~/.vim/ftdetect/asciidoc_filetype.vim'.
+3. Use '~/.vim/plugin/asciidoc_filetype.vim'.
 
 
 == Testing VIM syntax files
